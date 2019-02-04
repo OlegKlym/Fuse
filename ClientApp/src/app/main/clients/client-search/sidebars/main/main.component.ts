@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
+import { ContactsService } from 'app/main/apps/contacts/contacts.service';
 
 @Component({
     selector   : 'contacts-main-sidebar',
@@ -20,10 +20,10 @@ export class ContactsMainSidebarComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {ClientSearchService} _clientSearchService
+     * @param {ContactsService} _contactsService
      */
     constructor(
-      private _clientSearchService: ClientSearchService
+        private _contactsService: ContactsService
     )
     {
         // Set the private defaults
@@ -39,9 +39,9 @@ export class ContactsMainSidebarComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-      this.filterBy = this._clientSearchService.filterBy || 'all';
+        this.filterBy = this._contactsService.filterBy || 'all';
 
-      this._clientSearchService.onUserDataChanged
+        this._contactsService.onUserDataChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(user => {
                 this.user = user;
@@ -70,6 +70,6 @@ export class ContactsMainSidebarComponent implements OnInit, OnDestroy
     changeFilter(filter): void
     {
         this.filterBy = filter;
-      this._clientSearchService.onFilterChanged.next(this.filterBy);
+        this._contactsService.onFilterChanged.next(this.filterBy);
     }
 }

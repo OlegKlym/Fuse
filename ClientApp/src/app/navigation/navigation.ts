@@ -7,7 +7,22 @@ export const navigation: FuseNavigation[] = [
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         icon     : 'apps',
-        children : [
+        children: [
+            {
+              id: 'clients',
+              title: 'Clients',
+              type: 'collapsable',
+              icon: 'account_box',
+              children: [
+                {
+                  id: 'client-search',
+                  title: 'Client Search',
+                  type: 'item',
+                  url: '/clients/client-search',
+                  exactMatch: true
+                },
+              ]
+            },
             {
                 id       : 'swager',
                 title    : 'Swagger',

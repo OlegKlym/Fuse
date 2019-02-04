@@ -22,6 +22,10 @@ import { LayoutModule } from 'app/layout/layout.module';
 
 const appRoutes: Routes = [
     {
+        path        : 'clients',
+        loadChildren: './main/clients/clients.module#ClientsModule'
+    },
+    {
         path        : 'apps',
         loadChildren: './main/apps/apps.module#AppsModule'
     },

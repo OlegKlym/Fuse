@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 
-import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
+import { ContactsService } from 'app/main/apps/contacts/contacts.service';
 import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 
 @Component({
@@ -38,11 +38,11 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {ClientSearchService} _clientSearchService
+     * @param {ContactsService} _contactsService
      * @param {MatDialog} _matDialog
      */
     constructor(
-      private _clientSearchService: ClientSearchService,
+        private _contactsService: ContactsService,
         public _matDialog: MatDialog
     )
     {
@@ -59,9 +59,9 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-      this.dataSource = new FilesDataSource(this._clientSearchService);
+        this.dataSource = new FilesDataSource(this._contactsService);
 
-      this._clientSearchService.onContactsChanged
+        this._contactsService.onContactsChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(contacts => {
                 this.contacts = contacts;
@@ -72,7 +72,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
                 });
             });
 
-      this._clientSearchService.onSelectedContactsChanged
+        this._contactsService.onSelectedContactsChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(selectedContacts => {
                 for ( const id in this.checkboxes )
@@ -87,16 +87,16 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
                 this.selectedContacts = selectedContacts;
             });
 
-      this._clientSearchService.onUserDataChanged
+        this._contactsService.onUserDataChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(user => {
                 this.user = user;
             });
 
-      this._clientSearchService.onFilterChanged
+        this._contactsService.onFilterChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {
-              this._clientSearchService.deselectContacts();
+                this._contactsService.deselectContacts();
             });
     }
 
@@ -144,7 +144,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
                      */
                     case 'save':
 
-                    this._clientSearchService.updateContact(formData.getRawValue());
+                        this._contactsService.updateContact(formData.getRawValue());
 
                         break;
                     /**
@@ -173,7 +173,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
         this.confirmDialogRef.afterClosed().subscribe(result => {
             if ( result )
             {
-              this._clientSearchService.deleteContact(contact);
+                this._contactsService.deleteContact(contact);
             }
             this.confirmDialogRef = null;
         });
@@ -187,7 +187,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
      */
     onSelectedChange(contactId): void
     {
-      this._clientSearchService.toggleSelectedContact(contactId);
+        this._contactsService.toggleSelectedContact(contactId);
     }
 
     /**
@@ -206,7 +206,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
             this.user.starred.push(contactId);
         }
 
-      this._clientSearchService.updateUserData(this.user);
+        this._contactsService.updateUserData(this.user);
     }
 }
 
@@ -215,10 +215,10 @@ export class FilesDataSource extends DataSource<any>
     /**
      * Constructor
      *
-     * @param {ClientSearchService} _clientSearchService
+     * @param {ContactsService} _contactsService
      */
     constructor(
-      private _clientSearchService: ClientSearchService
+        private _contactsService: ContactsService
     )
     {
         super();
@@ -230,7 +230,7 @@ export class FilesDataSource extends DataSource<any>
      */
     connect(): Observable<any[]>
     {
-      return this._clientSearchService.onContactsChanged;
+        return this._contactsService.onContactsChanged;
     }
 
     /**
