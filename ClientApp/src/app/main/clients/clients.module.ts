@@ -8,6 +8,10 @@ const routes = [
     path: 'client-search',
     loadChildren: './client-search/client-search.module#ClientSearchModule'
   },
+  {
+    path: 'vacancy-search',
+    loadChildren: './vacancy-search/vacancy-search.module#VacancySearchModule'
+  },
 ];
 
 @NgModule({

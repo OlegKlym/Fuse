@@ -21,6 +21,13 @@ export const navigation: FuseNavigation[] = [
                   url: '/clients/client-search',
                   exactMatch: true
                 },
+                {
+                  id: 'vacancy-search',
+                  title: 'Vacancy Search',
+                  type: 'item',
+                  url: '/clients/vacancy-search',
+                  exactMatch: true
+                },
               ]
             },
             {

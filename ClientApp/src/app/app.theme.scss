@@ -82,6 +82,7 @@ $typography: mat-typography-config(
 @import "src/app/layout/components/toolbar/toolbar.theme";
 
 @import "src/app/main/clients/client-search/client-search.theme";
+@import "src/app/main/clients/vacancy-search/vacancy-search.theme";
 
 @import "src/app/main/apps/academy/academy.theme";
 @import "src/app/main/apps/calendar/calendar.theme";
@@ -132,6 +133,7 @@ $typography: mat-typography-config(
   @include toolbar-theme($theme);
   // Apps
   @include clients-client-search-theme($theme);
+  @include clients-vacancy-search-theme($theme);
 
   @include academy-theme($theme);
   @include calendar-theme($theme);
