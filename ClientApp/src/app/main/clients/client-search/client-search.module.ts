@@ -9,9 +9,9 @@ import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
 import { ClientSearchComponent } from 'app/main/clients/client-search/client-search.component';
 import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
-import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-list/contact-list.component';
-import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
-import { ContactsMainSidebarComponent } from 'app/main/apps/contacts/sidebars/main/main.component';
+import { ClientsListComponent } from 'app/main/clients/client-search/client-list/client-list.component';
+import { ClientSearchSelectedBarComponent } from 'app/main/clients/client-search/selected-bar/selected-bar.component';
+import { ClientSearchMainSidebarComponent } from 'app/main/clients/client-search/sidebars/main/main.component';
 import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 
 const routes: Routes = [
@@ -27,9 +27,9 @@ const routes: Routes = [
 @NgModule({
     declarations   : [
        ClientSearchComponent,
-        ContactsContactListComponent,
-        ContactsSelectedBarComponent,
-        ContactsMainSidebarComponent,
+      ClientsListComponent,
+        ClientSearchSelectedBarComponent,
+      ClientSearchMainSidebarComponent,
         ContactsContactFormDialogComponent
     ],
     imports        : [

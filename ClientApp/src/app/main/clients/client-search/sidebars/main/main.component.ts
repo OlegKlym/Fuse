@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
+import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
 
 @Component({
-    selector   : 'contacts-main-sidebar',
+    selector   : 'client-search-main-sidebar',
     templateUrl: './main.component.html',
     styleUrls  : ['./main.component.scss']
 })
-export class ContactsMainSidebarComponent implements OnInit, OnDestroy
+export class ClientSearchMainSidebarComponent implements OnInit, OnDestroy
 {
     user: any;
     filterBy: string;
@@ -20,10 +20,10 @@ export class ContactsMainSidebarComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {ContactsService} _contactsService
+     * @param {ClientSearchService} _clientSearchService
      */
     constructor(
-        private _contactsService: ContactsService
+      private _clientSearchService: ClientSearchService
     )
     {
         // Set the private defaults
@@ -39,9 +39,9 @@ export class ContactsMainSidebarComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.filterBy = this._contactsService.filterBy || 'all';
+      this.filterBy = this._clientSearchService.filterBy || 'all';
 
-        this._contactsService.onUserDataChanged
+      this._clientSearchService.onUserDataChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(user => {
                 this.user = user;
@@ -70,6 +70,6 @@ export class ContactsMainSidebarComponent implements OnInit, OnDestroy
     changeFilter(filter): void
     {
         this.filterBy = filter;
-        this._contactsService.onFilterChanged.next(this.filterBy);
+      this._clientSearchService.onFilterChanged.next(this.filterBy);
     }
 }

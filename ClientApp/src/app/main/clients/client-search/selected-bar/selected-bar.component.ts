@@ -5,14 +5,14 @@ import { takeUntil } from 'rxjs/operators';
 
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
+import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
 
 @Component({
     selector   : 'selected-bar',
     templateUrl: './selected-bar.component.html',
     styleUrls  : ['./selected-bar.component.scss']
 })
-export class ContactsSelectedBarComponent implements OnInit, OnDestroy
+export class ClientSearchSelectedBarComponent implements OnInit, OnDestroy
 {
     confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
     hasSelectedContacts: boolean;
@@ -25,11 +25,11 @@ export class ContactsSelectedBarComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {ContactsService} _contactsService
+     * @param {ClientSearchService} _clientSearchService
      * @param {MatDialog} _matDialog
      */
     constructor(
-        private _contactsService: ContactsService,
+      private _clientSearchService: ClientSearchService,
         public _matDialog: MatDialog
     )
     {
@@ -46,13 +46,13 @@ export class ContactsSelectedBarComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this._contactsService.onSelectedContactsChanged
+      this._clientSearchService.onSelectedContactsChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(selectedContacts => {
                 this.selectedContacts = selectedContacts;
                 setTimeout(() => {
                     this.hasSelectedContacts = selectedContacts.length > 0;
-                    this.isIndeterminate = (selectedContacts.length !== this._contactsService.contacts.length && selectedContacts.length > 0);
+                  this.isIndeterminate = (selectedContacts.length !== this._clientSearchService.contacts.length && selectedContacts.length > 0);
                 }, 0);
             });
     }
@@ -76,7 +76,7 @@ export class ContactsSelectedBarComponent implements OnInit, OnDestroy
      */
     selectAll(): void
     {
-        this._contactsService.selectContacts();
+      this._clientSearchService.selectContacts();
     }
 
     /**
@@ -84,7 +84,7 @@ export class ContactsSelectedBarComponent implements OnInit, OnDestroy
      */
     deselectAll(): void
     {
-        this._contactsService.deselectContacts();
+      this._clientSearchService.deselectContacts();
     }
 
     /**
@@ -102,7 +102,7 @@ export class ContactsSelectedBarComponent implements OnInit, OnDestroy
             .subscribe(result => {
                 if ( result )
                 {
-                    this._contactsService.deleteSelectedContacts();
+                  this._clientSearchService.deleteSelectedContacts();
                 }
                 this.confirmDialogRef = null;
             });

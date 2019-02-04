@@ -8,17 +8,17 @@ import { takeUntil } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
+import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
 import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 
 @Component({
-    selector     : 'contacts-contact-list',
-    templateUrl  : './contact-list.component.html',
-    styleUrls    : ['./contact-list.component.scss'],
+    selector: 'clients-client-list',
+    templateUrl: './client-list.component.html',
+    styleUrls: ['./client-list.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class ContactsContactListComponent implements OnInit, OnDestroy
+export class ClientsListComponent implements OnInit, OnDestroy
 {
     @ViewChild('dialogContent')
     dialogContent: TemplateRef<any>;
@@ -38,11 +38,11 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {ContactsService} _contactsService
+     * @param {ClientSearchService} _clientSearchService
      * @param {MatDialog} _matDialog
      */
     constructor(
-        private _contactsService: ContactsService,
+      private _clientSearchService: ClientSearchService,
         public _matDialog: MatDialog
     )
     {
@@ -59,9 +59,9 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.dataSource = new FilesDataSource(this._contactsService);
+      this.dataSource = new FilesDataSource(this._clientSearchService);
 
-        this._contactsService.onContactsChanged
+      this._clientSearchService.onContactsChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(contacts => {
                 this.contacts = contacts;
@@ -72,7 +72,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
                 });
             });
 
-        this._contactsService.onSelectedContactsChanged
+      this._clientSearchService.onSelectedContactsChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(selectedContacts => {
                 for ( const id in this.checkboxes )
@@ -87,16 +87,16 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
                 this.selectedContacts = selectedContacts;
             });
 
-        this._contactsService.onUserDataChanged
+      this._clientSearchService.onUserDataChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(user => {
                 this.user = user;
             });
 
-        this._contactsService.onFilterChanged
+      this._clientSearchService.onFilterChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {
-                this._contactsService.deselectContacts();
+              this._clientSearchService.deselectContacts();
             });
     }
 
@@ -144,7 +144,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
                      */
                     case 'save':
 
-                        this._contactsService.updateContact(formData.getRawValue());
+                    this._clientSearchService.updateContact(formData.getRawValue());
 
                         break;
                     /**
@@ -173,7 +173,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
         this.confirmDialogRef.afterClosed().subscribe(result => {
             if ( result )
             {
-                this._contactsService.deleteContact(contact);
+              this._clientSearchService.deleteContact(contact);
             }
             this.confirmDialogRef = null;
         });
@@ -187,7 +187,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
      */
     onSelectedChange(contactId): void
     {
-        this._contactsService.toggleSelectedContact(contactId);
+      this._clientSearchService.toggleSelectedContact(contactId);
     }
 
     /**
@@ -206,7 +206,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy
             this.user.starred.push(contactId);
         }
 
-        this._contactsService.updateUserData(this.user);
+      this._clientSearchService.updateUserData(this.user);
     }
 }
 
@@ -218,7 +218,7 @@ export class FilesDataSource extends DataSource<any>
      * @param {ContactsService} _contactsService
      */
     constructor(
-        private _contactsService: ContactsService
+      private _clientSearchService: ClientSearchService
     )
     {
         super();
@@ -230,7 +230,7 @@ export class FilesDataSource extends DataSource<any>
      */
     connect(): Observable<any[]>
     {
-        return this._contactsService.onContactsChanged;
+      return this._clientSearchService.onContactsChanged;
     }
 
     /**
