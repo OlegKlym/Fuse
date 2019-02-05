@@ -65,6 +65,8 @@ namespace Fuse
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            app.UseCors("AllowAll");
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
