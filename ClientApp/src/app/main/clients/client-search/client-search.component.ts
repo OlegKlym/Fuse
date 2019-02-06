@@ -12,8 +12,8 @@ import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/conta
 
 @Component({
     selector     : 'client-search',
-  templateUrl: './client-search.component.html',
-  styleUrls: ['./client-search.component.scss'],
+    templateUrl: './client-search.component.html',
+    styleUrls: ['./client-search.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
@@ -86,29 +86,7 @@ export class ClientSearchComponent implements OnInit, OnDestroy
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * New contact
-     */
-    newContact(): void
-    {
-        this.dialogRef = this._matDialog.open(ContactsContactFormDialogComponent, {
-            panelClass: 'contact-form-dialog',
-            data      : {
-                action: 'new'
-            }
-        });
-
-        this.dialogRef.afterClosed()
-            .subscribe((response: FormGroup) => {
-                if ( !response )
-                {
-                    return;
-                }
-
-              this._clientSearchService.updateContact(response.getRawValue());
-            });
-    }
-
+    
     /**
      * Toggle the sidebar
      *

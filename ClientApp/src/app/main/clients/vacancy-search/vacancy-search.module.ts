@@ -12,7 +12,6 @@ import { VacancySearchService } from 'app/main/clients/vacancy-search/vacancy-se
 import { VacancyListComponent } from 'app/main/clients/vacancy-search/vacancy-list/vacancy-list.component';
 import { VacancySearchSelectedBarComponent } from 'app/main/clients/vacancy-search/selected-bar/selected-bar.component';
 import { VacancySearchMainSidebarComponent } from 'app/main/clients/vacancy-search/sidebars/main/main.component';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 
 const routes: Routes = [
     {
@@ -29,8 +28,7 @@ const routes: Routes = [
        VacancySearchComponent,
        VacancyListComponent,
        VacancySearchSelectedBarComponent,
-       VacancySearchMainSidebarComponent,
-       ContactsContactFormDialogComponent
+       VacancySearchMainSidebarComponent
     ],
     imports        : [
         RouterModule.forChild(routes),

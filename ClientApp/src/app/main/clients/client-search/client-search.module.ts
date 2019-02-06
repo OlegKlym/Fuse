@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule, MatTableModule, MatToolbarModule
+  MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule, MatTableModule, MatToolbarModule, MatExpansionModule
 } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -12,51 +12,49 @@ import { ClientSearchService } from 'app/main/clients/client-search/client-searc
 import { ClientsListComponent } from 'app/main/clients/client-search/client-list/client-list.component';
 import { ClientSearchSelectedBarComponent } from 'app/main/clients/client-search/selected-bar/selected-bar.component';
 import { ClientSearchMainSidebarComponent } from 'app/main/clients/client-search/sidebars/main/main.component';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 
 const routes: Routes = [
-    {
-        path     : '**',
+  {
+    path: '**',
     component: ClientSearchComponent,
-        resolve  : {
-          contacts: ClientSearchService
-        }
+    resolve: {
+      contacts: ClientSearchService
     }
+  }
 ];
 
 @NgModule({
-    declarations   : [
-       ClientSearchComponent,
-      ClientsListComponent,
-        ClientSearchSelectedBarComponent,
-      ClientSearchMainSidebarComponent,
-        ContactsContactFormDialogComponent
-    ],
-    imports        : [
-        RouterModule.forChild(routes),
+  declarations: [
+    ClientSearchComponent,
+    ClientsListComponent,
+    ClientSearchSelectedBarComponent,
+    ClientSearchMainSidebarComponent
+  ],
+  imports: [
+    RouterModule.forChild(routes),
 
-        MatButtonModule,
-        MatCheckboxModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatMenuModule,
-        MatRippleModule,
-        MatTableModule,
-        MatToolbarModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatExpansionModule,
 
-        FuseSharedModule,
-        FuseConfirmDialogModule,
-        FuseSidebarModule
-    ],
-    providers      : [
-      ClientSearchService
-    ],
-    entryComponents: [
-        ContactsContactFormDialogComponent
-    ]
+    FuseSharedModule,
+    FuseConfirmDialogModule,
+    FuseSidebarModule
+  ],
+  providers: [
+    ClientSearchService
+  ],
+  entryComponents: [
+    ContactsContactFormDialogComponent
+  ]
 })
-export class ClientSearchModule
-{
+export class ClientSearchModule {
 }

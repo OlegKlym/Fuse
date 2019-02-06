@@ -4,7 +4,9 @@
 
 export const environment = {
     production: false,
-    hmr       : false
+    hmr: false,
+    // URL of production API
+    apiUrl: 'https://customwindowaccents.com/api'
 };
 
 /*
