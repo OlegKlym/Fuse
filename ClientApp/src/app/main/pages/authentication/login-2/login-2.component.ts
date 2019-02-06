@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
@@ -29,11 +30,13 @@ export class Login2Component implements OnInit
      * @param {FuseConfigService} _fuseConfigService
      * @param {FormBuilder} _formBuilder
      * @param {HttpService} _httpService
+     * @param {Router} _router
      */
     constructor(
         private _httpService: HttpService,
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private _router: Router
     )
     {
         // Configure the layout
@@ -53,6 +56,12 @@ export class Login2Component implements OnInit
                 }
             }
         };
+
+        const isLogged = this._httpService.isLoggedIn();
+        if(isLogged)
+        {
+            this._router.navigateByUrl('/apps/dashboards/analytics');
+        }  
     }
 
     // -----------------------------------------------------------------------------------------------------

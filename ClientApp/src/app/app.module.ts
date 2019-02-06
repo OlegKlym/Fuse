@@ -19,6 +19,8 @@ import { FakeDbService } from 'app/fake-db/fake-db.service';
 import { AppComponent } from 'app/app.component';
 import { AppStoreModule } from 'app/store/store.module';
 import { LayoutModule } from 'app/layout/layout.module';
+import { AppGuard } from './app.guard';
+import { HttpService } from './main/pages/authentication/login-2/login-2.service';
 import { DataService } from 'app/services/data.service';
 
 const appRoutes: Routes = [
@@ -48,7 +50,7 @@ const appRoutes: Routes = [
     },
     {
         path      : '**',
-        redirectTo: 'apps/dashboards/analytics'
+        redirectTo: 'apps/dashboards/analytics/'
     }
 ];
 
@@ -86,6 +88,7 @@ const appRoutes: Routes = [
         LayoutModule,
         AppStoreModule
     ],
+    providers   : [AppGuard, HttpService],
     providers   : [
       DataService
     ],
