@@ -88,10 +88,7 @@ const appRoutes: Routes = [
         LayoutModule,
         AppStoreModule
     ],
-    providers   : [AppGuard, HttpService],
-    providers   : [
-      DataService
-    ],
+    providers: [AppGuard, HttpService, DataService],
     bootstrap   : [
         AppComponent
     ]
