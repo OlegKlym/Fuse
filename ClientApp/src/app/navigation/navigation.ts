@@ -28,6 +28,13 @@ export const navigation: FuseNavigation[] = [
                   url: '/clients/vacancy-search',
                   exactMatch: true
                 },
+                {
+                  id: 'contact-search',
+                  title: 'Client Contact Search',
+                  type: 'item',
+                  url: '/clients/contact-search',
+                  exactMatch: true
+                },
               ]
             },
             {

@@ -37,6 +37,7 @@
     <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
     <None Remove="ClientApp\src\app\services\api.service.ts" />
     <None Remove="ClientApp\src\app\services\data.service.ts" />
+    <None Remove="ClientApp\src\app\services\jwt-interceptor.service.ts" />
     <None Remove="ClientApp\src\styles.css" />
     <None Remove="ClientApp\src\styles.css" />
     <None Remove="ClientApp\src\app\app.component.css" />
@@ -44,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\helpers\jwt.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\api.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\data.service.ts" />
   </ItemGroup>

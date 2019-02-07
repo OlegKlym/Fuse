@@ -1,0 +1,101 @@
+<div id="contact-search" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+  <!-- HEADER -->
+  <div class="header accent p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
+       fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+    <!-- APP TITLE -->
+    <div fxLayout="row" fxLayoutAlign="start center">
+
+      <button mat-icon-button class="sidebar-toggle mr-12" fxHide.gt-sm
+              (click)="toggleSidebar('client-search-main-sidebar')">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="logo-icon mr-16"
+                  [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+          account_box
+        </mat-icon>
+        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          Client Contact search
+        </span>
+      </div>
+
+    </div>
+    <!-- / APP TITLE -->
+    <!-- SEARCH -->
+    <div class="ml-sm-32" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+
+      <!--<div class="search-wrapper mt-16 mt-sm-0">
+
+          <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+              <mat-icon>search</mat-icon>
+              <input [formControl]="searchInput" placeholder="Search for a contact">
+          </div>
+
+      </div>-->
+
+
+    </div>
+    <!-- / SEARCH -->
+
+  </div>
+
+  <div>
+    <div class="center p-24 pb-24 pr-sm-92" fusePerfectScrollbar>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your name and age
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div fxLayout="row">
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </div>
+
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- SIDEBAR -->
+    <!--<fuse-sidebar class="sidebar" name="client-search-main-sidebar" position="left" lockedOpen="gt-sm">
+
+      <div class="content" fusePerfectScrollbar>
+        <client-search-main-sidebar [@animate]="{value:'*'}"></client-search-main-sidebar>
+      </div>
+
+    </fuse-sidebar>-->
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
+
+      <!-- CONTENT -->
+      <div class="content">
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+  </div>
+  <!-- / CONTENT-->
+
+</div>

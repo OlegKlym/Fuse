@@ -83,7 +83,9 @@ export class ClientSearchService implements Resolve<any>
    *
    */
   getContacts() {
-    this._dataService.getContacts(new ContactsRequest(), (response) => {
+    let contactRequest = new ContactsRequest();
+    contactRequest.type = 'customer';
+    this._dataService.getContacts(contactRequest, (response) => {
       if (response.success) {
         this.contacts = response.contacts;
 

@@ -52,7 +52,6 @@ const routes: Routes = [
       VacancySearchService
     ],
     entryComponents: [
-        ContactsContactFormDialogComponent
     ]
 })
 export class VacancySearchModule

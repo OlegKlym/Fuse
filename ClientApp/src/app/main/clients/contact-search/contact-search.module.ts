@@ -7,28 +7,20 @@ import {
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
-import { ClientSearchComponent } from 'app/main/clients/client-search/client-search.component';
-import { ClientSearchService } from 'app/main/clients/client-search/client-search.service';
-import { ClientsListComponent } from 'app/main/clients/client-search/client-list/client-list.component';
-import { ClientSearchSelectedBarComponent } from 'app/main/clients/client-search/selected-bar/selected-bar.component';
-import { ClientSearchMainSidebarComponent } from 'app/main/clients/client-search/sidebars/main/main.component';
+import { ContactSearchComponent } from 'app/main/clients/contact-search/contact-search.component';
 
 const routes: Routes = [
   {
     path: '**',
-    component: ClientSearchComponent,
+    component: ContactSearchComponent,
     resolve: {
-      contacts: ClientSearchService
     }
   }
 ];
 
 @NgModule({
   declarations: [
-    ClientSearchComponent,
-    ClientsListComponent,
-    ClientSearchSelectedBarComponent,
-    ClientSearchMainSidebarComponent
+    ContactSearchComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -50,10 +42,9 @@ const routes: Routes = [
     FuseSidebarModule
   ],
   providers: [
-    ClientSearchService
   ],
   entryComponents: [
   ]
 })
-export class ClientSearchModule {
+export class ContactSearchModule {
 }
