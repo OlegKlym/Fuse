@@ -1,0 +1,77 @@
+<div id="signin" fxLayout="column">
+
+    <div id="signin-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="signin-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="logo">
+                <img src="assets/images/logos/fuse.svg">
+            </div>
+
+            <div class="title">SIGN IN TO YOUR ACCOUNT</div>
+
+            <form name="signInForm" [formGroup]="signInForm" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" [(ngModel)]="signInRequest.email">
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <mat-error *ngIf="signInForm.get('email').hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="!signInForm.get('email').hasError('required') &&
+                                signInForm.get('email').hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" [(ngModel)]="signInRequest.password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                     fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" aria-label="Remember Me" [(ngModel)]="signInRequest.remember_me">
+                        Remember Me
+                    </mat-checkbox>
+
+                    <a class="forgot-password" [routerLink]="'/auth/forgot-password'">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="SIGN IN"
+                        [disabled]="signInForm.invalid" (click)="submit(signInRequest)">
+                  SIGN IN
+                </button>
+
+            </form>
+
+            <!--<div class="separator">
+                <span class="text">OR</span>
+            </div>
+
+            <button mat-raised-button class="google">
+                Log in with Google
+            </button>
+
+            <button mat-raised-button class="facebook">
+                Log in with Facebook
+            </button>
+
+            <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Don't have an account?</span>
+                <a class="link" [routerLink]="'/pages/auth/register'">Create an account</a>
+            </div>-->
+
+        </div>
+
+    </div>
+
+</div>

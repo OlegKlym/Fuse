@@ -1,0 +1,36 @@
+@mixin signin-theme($theme) {
+
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark: map-get($theme, is-dark);
+
+  signin {
+
+    #signin {
+
+      #signin-form-wrapper {
+
+        #signin-form {
+          @if ($is-dark) {
+            background: mat-color($fuse-navy, 600);
+          }
+          @else {
+            background: map-get($background, card);
+          }
+
+          .separator {
+            color: map-get($foreground, divider);
+
+            .text {
+
+              &:before,
+              &:after {
+                border-top-color: map-get($foreground, divider);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

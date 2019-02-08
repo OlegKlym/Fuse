@@ -30,6 +30,10 @@ const appRoutes: Routes = [
     loadChildren: './main/clients/clients.module#ClientsModule'
   },
   {
+    path: 'auth',
+    loadChildren: './main/auth/auth.module#AuthModule'
+  },
+  {
     path: 'apps',
     loadChildren: './main/apps/apps.module#AppsModule'
   },

@@ -1,5 +1,7 @@
 export class SignInRequest
 {
-  public userName: string;
+  public email: string;
   public password: string;
+  public remember_me: boolean;
+
 }

@@ -84,6 +84,9 @@ $typography: mat-typography-config(
 @import "src/app/main/clients/client-search/client-search.theme";
 @import "src/app/main/clients/vacancy-search/vacancy-search.theme";
 
+@import "src/app/main/auth/signin/signin.theme";
+@import "src/app/main/auth/forgot-password/forgot-password.theme";
+
 @import "src/app/main/apps/academy/academy.theme";
 @import "src/app/main/apps/calendar/calendar.theme";
 @import "src/app/main/apps/chat/chat.theme";
@@ -135,7 +138,9 @@ $typography: mat-typography-config(
   @include clients-client-search-theme($theme);
   @include clients-vacancy-search-theme($theme);
 
-  @include academy-theme($theme);
+  @include signin-theme($theme);
+  @include forgot-password-theme($theme);
+
   @include calendar-theme($theme);
   @include chat-theme($theme);
   @include contacts-theme($theme);
