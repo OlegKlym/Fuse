@@ -16,6 +16,14 @@ const routes = [
     path: 'contact-search',
     loadChildren: './contact-search/contact-search.module#ContactSearchModule'
   },
+  {
+    path: 'credit-check',
+    loadChildren: './credit-check/credit-check.module#CreditCheckModule'
+  },
+  {
+    path: 'client-request',
+    loadChildren: './client-request/client-request.module#ClientRequestModule'
+  },
 ];
 
 @NgModule({

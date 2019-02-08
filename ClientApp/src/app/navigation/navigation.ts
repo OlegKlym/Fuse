@@ -35,6 +35,20 @@ export const navigation: FuseNavigation[] = [
                   url: '/clients/contact-search',
                   exactMatch: true
                 },
+                {
+                  id: 'credit-check',
+                  title: 'Credit Check',
+                  type: 'item',
+                  url: '/clients/credit-check',
+                  exactMatch: true
+                },
+                {
+                  id: 'client-request',
+                  title: 'Client Request',
+                  type: 'item',
+                  url: '/clients/client-request',
+                  exactMatch: true
+                },
               ]
             },
             {
